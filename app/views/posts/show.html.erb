@@ -1,14 +1,7 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1><a href="<%= @post.url %>"><%= @post.title %></a><br> <small>Submitted by <%= @post.user.email %></small></h1>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @post.description %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<div class="btn-group">
+	<%= @post.description %>
+</div>
