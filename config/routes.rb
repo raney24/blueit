@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   devise_for :users
   resources :posts do 
     member do
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
       put "dislike", to: "posts#downvote"
     end
   end
+  resources :comments
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
