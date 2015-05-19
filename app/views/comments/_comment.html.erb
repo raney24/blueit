@@ -1,14 +1,14 @@
-<h3 class="comments_title">
-  <%= @post.comments.count %> Comments
-</h3>
+<%= div_for(comment) do %>
+  <div class="comments_wrapper clearfix">
+    <div class="pull-left">
+      <p class="lead"><%= comment.body %></p>
+      <p><small>Submitted <strong><%= time_ago_in_words(comment.created_at) %> ago</strong> by <%= comment.user.email %></small></p>
+    </div>
  
-<div id="comments">
-  <%= render :partial => @post.comments %>
-</div>
-<%= simple_form_for [@post, Comment.new] do |f| %>
-  <div class="field">
-    <%= f.text_area :body, class: "form-control" %>
+    <div class="btn-group pull-right">
+      <% if comment.user == current_user -%>
+        <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %>
+      <% end %>
+    </div>
   </div>
-  <br>
-  <%= f.submit "Add Comment", class: "btn btn-primary" %>
 <% end %>
