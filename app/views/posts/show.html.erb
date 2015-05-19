@@ -33,3 +33,5 @@
   <br>
   <%= f.submit "Add Comment", class: "btn btn-primary" %>
 <% end %>
+
+<%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
