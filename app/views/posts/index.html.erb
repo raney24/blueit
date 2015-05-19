@@ -2,7 +2,7 @@
   <div class="post row clearfix">
     <h2>
       <%= link_to post.title, post %><br>
-      <small class="author">Submitted <%= time_ago_in_words(post.created_at) %> by <%= post.user.name %></small>
+      <small class="author">Submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %></small>
     </h2>
 
   <div class="btn-group">

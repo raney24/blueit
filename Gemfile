@@ -6,6 +6,10 @@ gem 'bootstrap-sass'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'simple_form', '~>3.0.2'
 
+#picture uploading
+gem "rmagick"
+gem "paperclip"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use postgresql as the database for Active Record
