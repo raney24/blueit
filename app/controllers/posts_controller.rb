@@ -7,6 +7,19 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+
+    if current_user
+      if params[:search].present? 
+        search = Post.search do
+          fulltext params[:search]
+        end
+        @post = search.results
+      else  
+        @post = []
+      end
+    else
+      @new_post = Post.new
+    end
   end
 
   # GET /posts/1

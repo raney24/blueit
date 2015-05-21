@@ -1,0 +1,9 @@
+<div class="person">
+	 <h4><%= post.title %> </h4>
+	 <h5>About:</h5>
+	 <italic><%= post.description %></italic>
+	 <div id="comments">
+  		<%= render :partial => @post.comments %>
+	</div>
+</div>
+<hr/>
