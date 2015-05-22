@@ -9,8 +9,11 @@
       </small>
     </h2>
 
+<div class="container">
+  <% if post.image.present? %>
     <%= image_tag post.image.url(:thumb) %>
-
+  <% end %>
+</div>
 <!-- Likes and Dislikes -->
 <div class="container">
   <div class="btn-group">    
