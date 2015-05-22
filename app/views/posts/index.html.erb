@@ -1,67 +1,77 @@
-<% @posts.each do |post| %>
-  <div class="post row clearfix">
-    <h2>
-      <%= link_to post.title, post %><br>
-      <small class="author">Submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> 
-      <% if post.user.avatar.present? %>
-        <%= image_tag post.user.avatar(:icon) %>
+
+<% if user_signed_in? -%>
+  <% @posts.each do |post| %>
+    <div class="post row clearfix">
+      <h2>
+        <%= link_to post.title, post %><br>
+        <small class="author">Submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> 
+        <% if post.user.avatar.present? %>
+          <%= image_tag post.user.avatar(:icon) %>
+        <% end %>
+        </small>
+      </h2>
+
+  <div class="container">
+    <% if post.image.present? %>
+      <%= image_tag post.image.url(:thumb) %>
+    <% end %>
+  </div>
+  <!-- Likes and Dislikes -->
+  <div class="container">
+    <div class="btn-group">    
+      <%= link_to like_post_path(post), method: :put, class: "btn btn-default btn-sm" do %>
+        <span class="glyphicon glyphicon-chevron-up"></span>
+        Upvote
+        <%= post.get_upvotes.size %>
       <% end %>
-      </small>
-    </h2>
+      <%= link_to dislike_post_path(post), method: :put, class: "btn btn-default btn-sm" do %>
+        <span class="glyphicon glyphicon-chevron-down">
+        Downvote
+        <%= post.get_downvotes.size %>
+      <% end %>
+    </div>
+    </div>
 
-<div class="container">
-  <% if post.image.present? %>
-    <%= image_tag post.image.url(:thumb) %>
-  <% end %>
-</div>
-<!-- Likes and Dislikes -->
-<div class="container">
-  <div class="btn-group">    
-    <%= link_to like_post_path(post), method: :put, class: "btn btn-default btn-sm" do %>
-      <span class="glyphicon glyphicon-chevron-up"></span>
-      Upvote
-      <%= post.get_upvotes.size %>
-    <% end %>
-    <%= link_to dislike_post_path(post), method: :put, class: "btn btn-default btn-sm" do %>
-      <span class="glyphicon glyphicon-chevron-down">
-      Downvote
-      <%= post.get_downvotes.size %>
-    <% end %>
-  </div>
-  </div>
-
-  <!-- Comments -->
-  <div class="comments_title">   
-    <% if post.comments.count == 1 %>
-      <%= post.comments.count %> Comment
-    <% elsif post.comments.count > 1 %> 
-      <%= post.comments.count %> Comments
-    <% end %>
-  </div>
-</div>
-<% end %>
-
-<!-- Search -->
-<div class="container">
-  <h3> Search for Posts </h3>
-   <div class="col-sm-6 col-md-6">
-    <%= form_tag posts_path, class: "form", method: :get do %>
-      <div class="input-group">
-        <%= text_field_tag :search, params[:search], placeholder: "Search posts", 
-        type: :search, class: "form-control" %>
-        <div class="input-group-btn">
-          <%= submit_tag 'Search', class: "form-control" %><i class="glyphicon glyphicon-search"></i>
+    <!-- Comments -->
+    <div class="comments_title">   
+      <% if post.comments.count == 1 %>
+        <%= post.comments.count %> Comment
+      <% elsif post.comments.count > 1 %> 
+        <%= post.comments.count %> Comments
       <% end %>
     </div>
   </div>
-</div>
-</div> 
+  <% end %>
+
+  <!-- Search -->
+  <div class="container">
+    <h3> Search for Posts </h3>
+     <div class="col-sm-6 col-md-6">
+      <%= form_tag posts_path, class: "form", method: :get do %>
+        <div class="input-group">
+          <%= text_field_tag :search, params[:search], placeholder: "Search posts", 
+          type: :search, class: "form-control" %>
+          <div class="input-group-btn">
+            <%= submit_tag 'Search', class: "form-control" %><i class="glyphicon glyphicon-search"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  </div> 
 
 
-<h4> Results </h4>
-      <% @posts.each do |post| %>
-        <%= render partial: 'post_search', locals: { post: post } %>
-      <% end %>
+  <h4> Results </h4>
+        <% @post.each do |post| %>
+          <%= render partial: 'post_search', locals: { post: post } %>
+        <% end %>
+
+<% else -%>
+
+<h2>
+  <a href="/users/sign_up">Sign up</a> to see content!
+</h2>
+
+<% end %>
 
 
 

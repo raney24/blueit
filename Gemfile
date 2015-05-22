@@ -1,10 +1,14 @@
 source 'https://rubygems.org'
 
-
 gem 'devise', '~> 3.4.0'
 gem 'bootstrap-sass'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'simple_form', '~>3.0.2'
+
+#from AWS
+gem 'sinatra'
+gem 'json'
+gem 'rack-parser'
 
 #picture uploading
 gem "rmagick"
