@@ -80,6 +80,9 @@ test:
 #
 production:
   <<: *default
-  database: blueit_production
-  username: blueit
-  password: <%= ENV['BLUEIT_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
